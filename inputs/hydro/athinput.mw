@@ -1,0 +1,69 @@
+<comment>
+problem   = Ferrers bar w/o Cooling function source term test
+reference = Li, Z. Shen, J. & Kim, W.-T. (2015)
+configure = --prob bar --eos isothermal --coord cartesian
+
+<job>
+problem_id = bar       # problem ID: basename of output filenames
+
+<output1>
+file_type  = hdf5      # Binary data dump
+variable   = prim      # variables to be output
+dt         = 0.001      # time increment between outputs
+
+<output2>
+file_type  = hst       # History data dump
+dt         = 0.0001    # time increment between outputs
+
+<time>
+cfl_number = 0.3       # The Courant, Friedrichs, & Lewy (CFL) Number
+nlim       = -1        # cycle limit
+tlim       = 1.0       # time limit
+xorder     = 2         # order of spatial reconstruction
+ncycle_out = 0.001     # interval for stdout summary info
+
+<mesh>
+nx1        = 2048       # Number of zones in X1-direction
+x1min      = -15.0      # minimum value of X1
+x1max      =  15.0      # maximum value of X1
+ix1_bc     = outflow    # inner-X1 boundary flag
+ox1_bc     = outflow    # inner-X1 boundary flag
+
+nx2        = 2048       # Number of zones in X2-direction
+x2min      = -15.0      # minimum value of X2
+x2max      =  15.0      # maximum value of X2
+ix2_bc     = outflow    # inner-X2 boundary flag
+ox2_bc     = outflow    # inner-X2 boundary flag
+
+nx3        = 1         # Number of zones in X3-direction
+x3min      = -0.1       # minimum value of X3
+x3max      =  0.1       # maximum value of X3
+ix3_bc     = outflow       # inner-X3 boundary flag
+ox3_bc     = outflow       # inner-X3 boundary flag
+
+<meshblock>
+nx1        = 256
+nx2        = 256
+nx3        = 1
+
+<hydro>
+gamma           = 1.0         # gamma = C_p/C_v
+iso_sound_speed = 10.          # isothemal cs, [km/s]
+
+<problem>
+potxmax = 15.         # read-in potential grid max x [kpc]
+potymax = 15.         # read-in potential grid max y [kpc]
+potzmax = 0.          # read-in potential grid max z [kpc]
+potnx   = 1500        # read-in potential grid dx    [kpc]
+potny   = 1500        # read-in potential grid dy    [kpc]
+potdz   = 1           # read-in potential grid dz    [kpc]
+
+den0   = 129.922    # central density              [1.0e6Msun/kpc^3]
+rgas   = 3.5        # scale length of gas disk     [kpc]
+initT  = 2194.      # initial Temperature          [K]
+phibar = 33.        # bar pattern speed            [km/s/kpc]
+phisp  = 23.        # spiral pattern speed         [km/s/kpc]
+rcut   = 14.5       # cut len at radial boundary   [kpc]
+FullBt = 1.0        # bar turn-on time factor            
+
+

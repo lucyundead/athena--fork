@@ -1,0 +1,56 @@
+<comment>
+problem   = Cooling function source term test
+reference = Inoue and Inutsuka 2008
+configure = --prob=cooling
+
+<job>
+problem_id = cooling   # problem ID: basename of output filenames
+
+<output1>
+file_type  = hst       # History data dump
+dt         = 0.01      # time increment between outputs
+
+<output2>
+file_type  = hdf5      # Binary data dump
+variable   = prim      # variables to be output
+dt         = 0.1       # time increment between outputs
+
+<time>
+cfl_number = 0.3       # The Courant, Friedrichs, & Lewy (CFL) Number
+nlim       = 100000    # cycle limit
+tlim       = 10.0      # time limit
+
+<mesh>
+nx1        = 512        # Number of zones in X1-direction
+x1min      = -10.0      # minimum value of X1
+x1max      =  10.0      # maximum value of X1
+ix1_bc     = user       # inner-X1 boundary flag
+ox1_bc     = user       # inner-X1 boundary flag
+
+nx2        = 256       # Number of zones in X2-direction
+x2min      = -10.0      # minimum value of X2
+x2max      =  10.0      # maximum value of X2
+ix2_bc     = periodic  # inner-X2 boundary flag
+ox2_bc     = periodic  # inner-X2 boundary flag
+
+nx3        = 1         # Number of zones in X3-direction
+x3min      = -0.1      # minimum value of X3
+x3max      =  0.1      # maximum value of X3
+ix3_bc     = periodic  # inner-X3 boundary flag
+ox3_bc     = periodic  # inner-X3 boundary flag
+
+<meshblock>
+nx1        = 128
+nx2        = 128
+nx3        = 1
+
+<hydro>
+gamma           = 1.4       # gamma = C_p/C_v
+
+<problem>
+den0   = 10.0   # intial density
+amp    = 0.01   # velocity perturbation amplitude
+vflow1 = 0.06   # initial bulk velocity along x
+vflow2 = 0.0    # initial bulk velocity along y
+press  = 0.01   # initial pressure
+

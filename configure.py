@@ -635,7 +635,7 @@ if args['mpi']:
             or args['cxx'] == 'icpc-phi' or args['cxx'] == 'g++-simd'
             or args['cxx'] == 'clang++' or args['cxx'] == 'clang++-simd'
             or args['cxx'] == 'clang++-apple'):
-        definitions['COMPILER_COMMAND'] = makefile_options['COMPILER_COMMAND'] = 'mpicxx'
+        definitions['COMPILER_COMMAND'] = makefile_options['COMPILER_COMMAND'] = 'mpiicpc'
     if args['cxx'] == 'cray':
         makefile_options['COMPILER_FLAGS'] += ' -h mpi1'
     if args['cxx'] == 'bgxlc++':
